@@ -541,7 +541,7 @@ def expand_mask(bbox, mini_mask, image_shape):
 
     See inspect_data.ipynb notebook for more details.
     """
-    mask = np.zeros(image_shape[:2] + (mini_mask.shape[-1],), dtype=bool)
+    mask = np.zeros(image_shape[:2] + (mini_mask.shape[-1],), dtype=float)
     for i in range(mask.shape[-1]):
         m = mini_mask[:, :, i]
         y1, x1, y2, x2 = bbox[i][:4]
@@ -549,8 +549,8 @@ def expand_mask(bbox, mini_mask, image_shape):
         w = x2 - x1
         # Resize with bilinear interpolation
         m = resize(m, (h, w))
-        #mask[y1:y2, x1:x2, i] = np.around(m).astype(np.bool)
-        mask[y1:y2, x1:x2, i] = np.ceil(m).astype(np.bool)
+        mask[y1:y2, x1:x2, i] = np.around(m).astype(np.float32)
+        #mask[y1:y2, x1:x2, i] = np.ceil(m).astype(np.bool)
     return mask
 
 
