@@ -531,7 +531,7 @@ def minimize_mask(bbox, mask, mini_shape):
         # Resize with bilinear interpolation
         m = resize(m, mini_shape)
         #mini_mask[:, :, i] = np.around(m).astype(np.bool)
-        mini_mask[:, :, i] = np.ceil(m).astype(np.bool)
+        mini_mask[:, :, i] = m.astype(np.float32)
     return mini_mask
 
 
