@@ -543,7 +543,7 @@ def expand_mask(bbox, mini_mask, image_shape):
 
     See inspect_data.ipynb notebook for more details.
     """
-    mask = np.zeros(image_shape[:2] + (mini_mask.shape[-1],), dtype=float)
+    mask = np.zeros(image_shape[:2] + (mini_mask.shape[-1],), dtype=bool)
     for i in range(mask.shape[-1]):
         m = mini_mask[:, :, i]
         y1, x1, y2, x2 = bbox[i][:4]
