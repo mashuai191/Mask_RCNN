@@ -569,11 +569,11 @@ def unmold_mask(mask, bbox, image_shape):
 
     Returns a binary mask with the same size as the original image.
     """
-    threshold = 0.1
+    threshold = 0.15
     y1, x1, y2, x2 = bbox
     mask = resize(mask, (y2 - y1, x2 - x1))
-    #mask = np.where(mask >= threshold, 1, 0).astype(np.bool)
-    mask = np.where(mask >= threshold, mask, 0).astype(np.float32)
+    mask = np.where(mask >= threshold, 1, 0).astype(np.bool)
+    #mask = np.where(mask >= threshold, mask, 0).astype(np.float32)
 
 
     # Put the mask in the right location.
