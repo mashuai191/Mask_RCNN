@@ -520,12 +520,12 @@ def minimize_mask(bbox, mask, mini_shape):
 
     See inspect_data.ipynb notebook for more details.
     """
-    #mini_mask = np.zeros(mini_shape + (mask.shape[-1],), dtype=bool)
-    mini_mask = np.zeros(mini_shape + (mask.shape[-1],), dtype=float)
+    mini_mask = np.zeros(mini_shape + (mask.shape[-1],), dtype=bool)
+    #mini_mask = np.zeros(mini_shape + (mask.shape[-1],), dtype=float)
     for i in range(mask.shape[-1]):
         # Pick slice and cast to bool in case load_mask() returned wrong dtype
-        #m = mask[:, :, i].astype(bool)
-        m = mask[:, :, i].astype(np.float32)
+        m = mask[:, :, i].astype(bool)
+        #m = mask[:, :, i].astype(np.float32)
         y1, x1, y2, x2 = bbox[i][:4]
         m = m[y1:y2, x1:x2]
         if m.size == 0:
@@ -533,7 +533,7 @@ def minimize_mask(bbox, mask, mini_shape):
         # Resize with bilinear interpolation
         m = resize(m, mini_shape)
         #mini_mask[:, :, i] = np.around(m).astype(np.bool)
-        mini_mask[:, :, i] = m.astype(np.float32)
+        mini_mask[:, :, i] = np.ceil(m).astype(np.bool)
     return mini_mask
 
 
