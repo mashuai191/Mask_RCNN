@@ -551,8 +551,8 @@ def expand_mask(bbox, mini_mask, image_shape):
         w = x2 - x1
         # Resize with bilinear interpolation
         m = resize(m, (h, w))
-        #mask[y1:y2, x1:x2, i] = np.around(m).astype(np.float32)
-        mask[y1:y2, x1:x2, i] = m.astype(np.float32)
+        mask[y1:y2, x1:x2, i] = np.around(m).astype(np.bool)
+        #mask[y1:y2, x1:x2, i] = m.astype(np.float32)
     return mask
 
 
