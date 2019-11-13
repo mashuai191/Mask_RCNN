@@ -155,8 +155,8 @@ class Config(object):
 
     # Shape of output mask
     # To change this you also need to change the neural network mask branch
-    #MASK_SHAPE = [28, 28]
-    MASK_SHAPE = [56, 56]
+    MASK_SHAPE = [28, 28]
+    #MASK_SHAPE = [56, 56]
 
     # Maximum number of ground truth instances to use in one image
     MAX_GT_INSTANCES = 100
